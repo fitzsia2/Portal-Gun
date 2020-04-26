@@ -22,7 +22,10 @@
     </style>
 
     <style name="ListItemTitle" parent="TextAppearance.AppCompat.Title" />
-
     <style name="ListItemSubtitle" parent="TextAppearance.MaterialComponents.Subtitle1" />
+
+    <style name="DetailTitle" parent="TextAppearance.MaterialComponents.Subtitle1" />
+
+    <style name="DetailText" parent="TextAppearance.MaterialComponents.Body2" />
 
 </resources>

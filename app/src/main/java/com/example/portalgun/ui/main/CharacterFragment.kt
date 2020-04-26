@@ -61,5 +61,9 @@ class CharacterFragment : Fragment() {
             load(character?.image, imageLoadedCallback)
         }
         view.findViewById<TextView>(R.id.name).text = character?.name
+        view.findViewById<TextView>(R.id.gender).text = character?.gender
+        view.findViewById<TextView>(R.id.location).text = character?.location?.name
+        view.findViewById<TextView>(R.id.status).text = character?.status
+        view.findViewById<TextView>(R.id.origin).text = character?.origin?.name
     }
 }
