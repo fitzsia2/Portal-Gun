@@ -1,6 +1,5 @@
 package com.example.portalgun.ui.main
 
-import com.example.portalgun.MainActivity
 import dagger.Subcomponent
 
 @Subcomponent

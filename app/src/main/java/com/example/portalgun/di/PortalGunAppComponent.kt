@@ -10,7 +10,7 @@ import javax.inject.Singleton
  * Top level DI Component
  */
 @Singleton
-@Component(modules = [ViewModule::class])
+@Component(modules = [AppModule::class, ViewModule::class])
 interface PortalGunAppComponent {
 
     @Component.Factory
