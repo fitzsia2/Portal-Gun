@@ -15,6 +15,11 @@ import javax.inject.Inject
 
 class ListFragment : Fragment() {
 
+    interface ICharacterClick {
+
+        val onCharacterClicked: CharacterClickListener
+    }
+
     companion object {
         fun newInstance() = ListFragment()
     }
@@ -48,7 +53,7 @@ class ListFragment : Fragment() {
     }
 
     private val onCharacterClicked: CharacterClickListener = { character, view ->
-        // New fragment
+        (requireActivity() as? ICharacterClick)?.onCharacterClicked?.invoke(character, view)
     }
 
     private val imageLoadedCallback: ImageLoadedCallback = { loaded, image, exception ->

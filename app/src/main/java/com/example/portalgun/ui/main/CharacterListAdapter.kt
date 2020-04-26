@@ -8,8 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.portalgun.R
 import com.example.portalgun.remote.rickandmorty.Character
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
+import com.example.portalgun.util.load
 
 class CharacterListAdapter(
     private val characters: Array<Character>,
@@ -33,19 +32,14 @@ class CharacterListAdapter(
             setOnClickListener {
                 onCharacterClicked(character, it)
             }
-            findViewById<ImageView>(R.id.image).load(character.image, onImageLoaded)
+            transitionName = "card-$position"
+            findViewById<ImageView>(R.id.image).apply {
+                load(character.image, onImageLoaded)
+                transitionName = "image-$position"
+            }
             findViewById<TextView>(R.id.name).text = character.name
             findViewById<TextView>(R.id.gender).text = character.gender
             findViewById<TextView>(R.id.location).text = character.location.name
         }
-    }
-
-    private fun ImageView.load(path: String, onLoaded: ImageLoadedCallback = { _, _, _ -> }) {
-        Picasso.get().load(path).into(this, object : Callback {
-
-            override fun onSuccess() = onLoaded(true, this@load, null)
-
-            override fun onError(e: Exception?) = onLoaded(false, this@load, e)
-        })
     }
 }

@@ -1,7 +1,10 @@
 package com.example.portalgun.remote.rickandmorty
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Character(
     val id: String,
     val name: String,
@@ -15,4 +18,4 @@ data class Character(
     @field:Json(name = "episode") val episodes: List<String>,
     val url: String,
     val created: String
-)
+) : Parcelable
