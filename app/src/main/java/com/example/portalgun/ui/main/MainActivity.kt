@@ -1,9 +1,9 @@
-package com.example.portalgun
+package com.example.portalgun.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.portalgun.ui.main.ListFragment
-import com.example.portalgun.ui.main.MainComponent
+import com.example.portalgun.PortalGunApp
+import com.example.portalgun.R
 
 class MainActivity : AppCompatActivity() {
 
