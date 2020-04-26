@@ -39,8 +39,16 @@ class ListFragment : Fragment() {
         val list = view.findViewById<RecyclerView>(R.id.character_list)
         list.layoutManager = LinearLayoutManager(context)
         viewModel.characters.observe(viewLifecycleOwner) { characters ->
-            list.adapter = CharacterListAdapter(characters.toTypedArray(), imageLoadedCallback)
+            list.adapter = CharacterListAdapter(
+                characters.toTypedArray(),
+                onCharacterClicked,
+                imageLoadedCallback
+            )
         }
+    }
+
+    private val onCharacterClicked: CharacterClickListener = { character, view ->
+        // New fragment
     }
 
     private val imageLoadedCallback: ImageLoadedCallback = { loaded, image, exception ->

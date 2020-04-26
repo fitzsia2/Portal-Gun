@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso
 
 class CharacterListAdapter(
     private val characters: Array<Character>,
+    private val onCharacterClicked: CharacterClickListener,
     private val onImageLoaded: ImageLoadedCallback = { _, _, _ -> }
 ) : RecyclerView.Adapter<CharacterListAdapter.CharacterViewHolder>() {
 
@@ -29,6 +30,9 @@ class CharacterListAdapter(
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val character = characters[position]
         with(holder.itemView) {
+            setOnClickListener {
+                onCharacterClicked(character, it)
+            }
             findViewById<ImageView>(R.id.image).load(character.image, onImageLoaded)
             findViewById<TextView>(R.id.name).text = character.name
             findViewById<TextView>(R.id.gender).text = character.gender
