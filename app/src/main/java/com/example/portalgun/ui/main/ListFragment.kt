@@ -1,12 +1,17 @@
 package com.example.portalgun.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.portalgun.R
+import timber.log.Timber
+import javax.inject.Inject
 
 class ListFragment : Fragment() {
 
@@ -14,18 +19,33 @@ class ListFragment : Fragment() {
         fun newInstance() = ListFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    @Inject lateinit var viewModel: MainViewModel
+    lateinit var layout: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.character_list_fragment, container, false)
+            .also { layout = it }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as MainActivity).mainComponent.inject(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val list = view.findViewById<RecyclerView>(R.id.character_list)
+        list.layoutManager = LinearLayoutManager(context)
+        viewModel.characters.observe(viewLifecycleOwner) { characters ->
+            list.adapter = CharacterListAdapter(characters.toTypedArray(), imageLoadedCallback)
+        }
+    }
+
+    private val imageLoadedCallback: ImageLoadedCallback = { loaded, image, exception ->
+        if (!loaded) {
+            Timber.e(exception)
+        }
     }
 }
