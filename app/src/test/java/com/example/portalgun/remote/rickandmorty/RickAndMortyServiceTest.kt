@@ -81,4 +81,39 @@ class RickAndMortyServiceTest {
             fail(e.message)
         }
     }
+
+    @Test
+    fun `episodes returns a list of episodes`() = runBlocking {
+        val episode10 = Episode(
+            id = 10,
+            name = "Close Rick-counters of the Rick Kind",
+            airDate = "April 7, 2014",
+            episode = "S01E10",
+            characterUrls = listOf("https://rickandmortyapi.com/api/character/1"),
+            url = "https://rickandmortyapi.com/api/episode/10",
+            created = "2017-11-10T12:56:34.747Z"
+        )
+        val episode28 = Episode(
+            id = 28,
+            name = "The Ricklantis Mixup",
+            airDate = "September 10, 2017",
+            episode = "S03E07",
+            characterUrls = listOf("https://rickandmortyapi.com/api/character/1"),
+            url = "https://rickandmortyapi.com/api/episode/28",
+            created = "2017-11-10T12:56:36.618Z"
+        )
+        mockWebServer.enqueueResponse(
+            this@RickAndMortyServiceTest.javaClass.classLoader!!,
+            "episodes.json"
+        )
+        try {
+            val episodes = serviceUnderTest.episodes("10,28")
+            Truth.assertThat(episodes)
+                .contains(episode10)
+            Truth.assertThat(episodes)
+                .contains(episode28)
+        } catch (e: Exception) {
+            fail(e.message)
+        }
+    }
 }
