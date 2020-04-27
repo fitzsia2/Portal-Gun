@@ -50,6 +50,10 @@ class ListFragment : Fragment() {
                 imageLoadedCallback
             )
         }
+        viewModel.loading.observe(viewLifecycleOwner) { loading ->
+            view.findViewById<View>(R.id.progress).visibility =
+                if (loading) View.VISIBLE else View.GONE
+        }
     }
 
     private val onCharacterClicked: CharacterClickListener = { character, view ->
