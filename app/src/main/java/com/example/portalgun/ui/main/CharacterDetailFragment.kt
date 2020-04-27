@@ -16,14 +16,14 @@ import timber.log.Timber
 /**
  * Show the details of a particular character.
  */
-class CharacterFragment : Fragment() {
+class CharacterDetailFragment : Fragment() {
 
     companion object {
 
         private const val ARG_CHARACTER = "character"
 
         fun newInstance(param1: Character) =
-            CharacterFragment().apply {
+            CharacterDetailFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_CHARACTER, param1)
                 }
@@ -53,7 +53,7 @@ class CharacterFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         postponeEnterTransition()
-        return inflater.inflate(R.layout.character_fragment, container, false)
+        return inflater.inflate(R.layout.character_detail_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

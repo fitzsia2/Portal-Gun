@@ -29,7 +29,11 @@ class MainActivity : AppCompatActivity(), CharactersFragment.ICharacterClick {
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             .addSharedElement(view, "root")
             .addSharedElement(view.findViewById(R.id.image), "image")
-            .replace(R.id.container, CharacterFragment.newInstance(character), "character-fragment")
+            .replace(
+                R.id.container,
+                CharacterDetailFragment.newInstance(character),
+                "character-fragment"
+            )
             .addToBackStack(null)
             .commit()
     }
