@@ -13,7 +13,7 @@ import com.example.portalgun.R
 import timber.log.Timber
 import javax.inject.Inject
 
-class ListFragment : Fragment() {
+class CharactersFragment : Fragment() {
 
     interface ICharacterClick {
 
@@ -21,7 +21,7 @@ class ListFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = ListFragment()
+        fun newInstance() = CharactersFragment()
     }
 
     @Inject lateinit var viewModel: MainViewModel
@@ -31,7 +31,7 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.character_list_fragment, container, false)
+        return inflater.inflate(R.layout.characters_fragment, container, false)
             .also { layout = it }
     }
 

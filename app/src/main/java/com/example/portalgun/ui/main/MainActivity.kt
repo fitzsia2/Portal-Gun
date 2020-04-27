@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.portalgun.PortalGunApp
 import com.example.portalgun.R
 
-class MainActivity : AppCompatActivity(), ListFragment.ICharacterClick {
+class MainActivity : AppCompatActivity(), CharactersFragment.ICharacterClick {
 
     lateinit var mainComponent: MainComponent
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), ListFragment.ICharacterClick {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ListFragment.newInstance(), "list-fragment")
+                .replace(R.id.container, CharactersFragment.newInstance(), "list-fragment")
                 .commitNow()
         }
     }

@@ -12,5 +12,5 @@ interface MainComponent {
     }
 
     fun inject(activity: MainActivity)
-    fun inject(fragment: ListFragment)
+    fun inject(fragment: CharactersFragment)
 }
