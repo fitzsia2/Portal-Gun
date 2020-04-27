@@ -24,8 +24,7 @@ class CharactersFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() =
-            CharactersFragment()
+        fun newInstance() = CharactersFragment()
     }
 
     @Inject lateinit var viewModel: CharactersViewModel

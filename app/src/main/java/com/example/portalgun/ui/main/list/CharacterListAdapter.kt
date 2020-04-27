@@ -23,9 +23,7 @@ class CharacterListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val characterView = LayoutInflater.from(parent.context)
             .inflate(R.layout.character_list_item, parent, false)
-        return CharacterViewHolder(
-            characterView
-        )
+        return CharacterViewHolder(characterView)
     }
 
     override fun getItemCount() = characters.size
