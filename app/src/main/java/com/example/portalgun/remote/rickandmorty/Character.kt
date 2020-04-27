@@ -1,5 +1,6 @@
 package com.example.portalgun.remote.rickandmorty
 
+import android.net.Uri
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
@@ -19,3 +20,8 @@ data class Character(
     val url: String,
     val created: String
 ) : Parcelable
+
+val Character.episodeIds: List<Int>
+    get() = episodes.map { episodeUrl ->
+        Uri.parse(episodeUrl).pathSegments.last().toInt()
+    }
