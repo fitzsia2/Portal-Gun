@@ -19,6 +19,14 @@ class RickAndMortyRepository @Inject constructor(
     override suspend fun characters() = rickAndMortyService.characters().characters
 
     override suspend fun episodes(ids: List<Int>): List<Episode> {
-        return rickAndMortyService.episodes(ids.joinToString(separator = ","))
+        return if (ids.size == 1) {
+            listOf(episode(ids.first()))
+        } else {
+            rickAndMortyService.episodes(ids.joinToString(separator = ","))
+        }
+    }
+
+    private suspend fun episode(id: Int): Episode {
+        return rickAndMortyService.episode(id)
     }
 }

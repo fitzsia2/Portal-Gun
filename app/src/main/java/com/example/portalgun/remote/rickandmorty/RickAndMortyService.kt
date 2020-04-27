@@ -22,4 +22,12 @@ interface RickAndMortyService {
     suspend fun episodes(
         @Path("ids") ids: String
     ): List<Episode>
+
+    /**
+     * Retrieve a list of episodes given a comma separated list of ids
+     */
+    @GET("episode/{id}")
+    suspend fun episode(
+        @Path("id") id: Int
+    ): Episode
 }
