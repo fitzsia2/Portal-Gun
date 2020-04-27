@@ -28,7 +28,7 @@ class CharactersFragment : Fragment() {
             CharactersFragment()
     }
 
-    @Inject lateinit var viewModel: MainViewModel
+    @Inject lateinit var viewModel: CharactersViewModel
     lateinit var layout: View
 
     override fun onCreateView(

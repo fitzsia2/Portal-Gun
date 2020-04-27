@@ -8,7 +8,7 @@ import com.example.portalgun.repo.IRickAndMortyRepository
 import com.example.portalgun.util.launchWithStatus
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class CharactersViewModel @Inject constructor(
     private val rickAndMortyRepository: IRickAndMortyRepository
 ) : ViewModel() {
 
