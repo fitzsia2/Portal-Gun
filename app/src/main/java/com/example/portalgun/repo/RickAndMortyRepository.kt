@@ -1,12 +1,15 @@
 package com.example.portalgun.repo
 
 import com.example.portalgun.remote.rickandmorty.Character
+import com.example.portalgun.remote.rickandmorty.Episode
 import com.example.portalgun.remote.rickandmorty.RickAndMortyService
 import javax.inject.Inject
 
 interface IRickAndMortyRepository {
 
     suspend fun characters(): List<Character>
+
+    suspend fun episodes(ids: List<Int>): List<Episode>
 }
 
 class RickAndMortyRepository @Inject constructor(
@@ -14,4 +17,8 @@ class RickAndMortyRepository @Inject constructor(
 ) : IRickAndMortyRepository {
 
     override suspend fun characters() = rickAndMortyService.characters().characters
+
+    override suspend fun episodes(ids: List<Int>): List<Episode> {
+        return rickAndMortyService.episodes(ids.joinToString(separator = ","))
+    }
 }
