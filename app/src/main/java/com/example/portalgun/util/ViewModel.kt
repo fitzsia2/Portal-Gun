@@ -8,13 +8,17 @@ import kotlinx.coroutines.launch
 /**
  * Launch a suspend [block] that posts a loading status
  */
-fun ViewModel.launchWithStatus(loading: MutableLiveData<Boolean>, block: suspend () -> Unit) {
+fun ViewModel.launchWithStatus(
+    loading: MutableLiveData<Boolean>,
+    error: MutableLiveData<Exception>? = null,
+    block: suspend () -> Unit
+) {
     viewModelScope.launch {
         try {
             loading.value = true
             block()
         } catch (e: Exception) {
-            // TODO Add exception handler
+            error?.value = e
         } finally {
             loading.value = false
         }

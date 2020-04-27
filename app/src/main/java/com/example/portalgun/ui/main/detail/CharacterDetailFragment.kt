@@ -18,6 +18,7 @@ import com.example.portalgun.remote.rickandmorty.episodeIds
 import com.example.portalgun.ui.main.ImageLoadedCallback
 import com.example.portalgun.ui.main.MainActivity
 import com.example.portalgun.util.load
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -94,6 +95,11 @@ class CharacterDetailFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             val visibility = if (loading) View.VISIBLE else View.GONE
             view.findViewById<View>(R.id.progress).visibility = visibility
+        }
+        viewModel.error.observe(viewLifecycleOwner) { error ->
+            error.message?.let { message ->
+                Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
+            }
         }
     }
 }

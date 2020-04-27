@@ -16,9 +16,11 @@ class CharacterDetailViewModel @Inject constructor(
     val episodes: LiveData<List<Episode>> = _episodes
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
+    private val _error = MutableLiveData<Exception>()
+    val error: LiveData<Exception> = _error
 
     fun loadEpisodes(ids: List<Int>) {
-        launchWithStatus(_loading) {
+        launchWithStatus(_loading, _error) {
             _episodes.value = rickAndMortyRepository.episodes(ids)
         }
     }
