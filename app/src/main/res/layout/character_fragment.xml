@@ -1,134 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorSurface"
-    android:transitionName="root"
-    tools:context=".ui.main.CharacterFragment">
+    android:background="@color/colorSurface">
 
-    <TextView
-        android:id="@+id/name"
-        style="@style/TextAppearance.AppCompat.Display1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Rick Sanchez" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionName="root"
+        tools:context=".ui.main.CharacterFragment">
 
-    <ImageView
-        android:contentDescription="@string/character_photo_content_description"
-        android:id="@+id/image"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:transitionName="image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        tools:background="@drawable/ic_launcher_background"
-        tools:layout_height="128dp"
-        tools:layout_width="128dp" />
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextAppearance.AppCompat.Display1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Rick Sanchez" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/character_photo_content_description"
+            android:transitionName="image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:background="@drawable/ic_launcher_background"
+            tools:layout_height="128dp"
+            tools:layout_width="128dp" />
 
         <LinearLayout
+            android:id="@+id/detail_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image">
 
-            <TextView
-                android:id="@+id/gender_title"
-                style="@style/DetailTitle"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="@string/gender_title" />
-
-            <TextView
-                android:id="@+id/gender"
-                style="@style/DetailText"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Male" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/gender_title"
+                    style="@style/DetailTitle"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender_title" />
+
+                <TextView
+                    android:id="@+id/gender"
+                    style="@style/DetailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Male" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/location_title"
+                    style="@style/DetailTitle"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location_title" />
+
+                <TextView
+                    android:id="@+id/location"
+                    style="@style/DetailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Location" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/status_title"
+                    style="@style/DetailTitle"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status_title" />
+
+                <TextView
+                    android:id="@+id/status"
+                    style="@style/DetailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Alive" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/origin_title"
+                    style="@style/DetailTitle"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/origin_title" />
+
+                <TextView
+                    android:id="@+id/origin"
+                    style="@style/DetailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="origin" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/episodes_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:text="Appears in:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_group" />
 
-            <TextView
-                android:id="@+id/location_title"
-                style="@style/DetailTitle"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="@string/location_title" />
-
-            <TextView
-                android:id="@+id/location"
-                style="@style/DetailText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Location" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/episodes"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/episodes_title"
+            tools:listitem="@layout/episode_list_item" />
 
-            <TextView
-                android:id="@+id/status_title"
-                style="@style/DetailTitle"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="@string/status_title" />
-
-            <TextView
-                android:id="@+id/status"
-                style="@style/DetailText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Alive" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/origin_title"
-                style="@style/DetailTitle"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="@string/origin_title" />
-
-            <TextView
-                android:id="@+id/origin"
-                style="@style/DetailText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="origin" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
