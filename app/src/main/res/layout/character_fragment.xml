@@ -144,8 +144,20 @@
             android:layout_marginTop="12dp"
             android:text="Appears in:"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detail_group" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/episodes"
+            app:layout_constraintStart_toStartOf="@id/episodes"
+            app:layout_constraintTop_toTopOf="@id/episodes" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/episodes"
@@ -153,6 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/episodes_title"
