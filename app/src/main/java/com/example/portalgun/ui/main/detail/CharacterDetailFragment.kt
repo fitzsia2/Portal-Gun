@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.example.portalgun.R
 import com.example.portalgun.remote.rickandmorty.Character
@@ -74,6 +76,8 @@ class CharacterDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val list: RecyclerView = view.findViewById(R.id.episodes)
+        list.layoutManager = LinearLayoutManager(context)
         view.findViewById<ImageView>(R.id.image).apply {
             load(character?.image, imageLoadedCallback)
         }
@@ -83,7 +87,9 @@ class CharacterDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.status).text = character?.status
         view.findViewById<TextView>(R.id.origin).text = character?.origin?.name
         viewModel.episodes.observe(viewLifecycleOwner) { episodes ->
-            // TODO
+            list.visibility = View.VISIBLE
+            view.findViewById<View>(R.id.episodes_title).visibility = View.VISIBLE
+            list.adapter = EpisodeListAdapter(episodes.toTypedArray())
         }
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             val visibility = if (loading) View.VISIBLE else View.GONE
