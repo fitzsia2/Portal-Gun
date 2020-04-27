@@ -1,4 +1,4 @@
-package com.example.portalgun.ui.main
+package com.example.portalgun.ui.main.list
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,9 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.portalgun.R
+import com.example.portalgun.ui.main.CharacterClickListener
+import com.example.portalgun.ui.main.ImageLoadedCallback
+import com.example.portalgun.ui.main.MainActivity
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -21,7 +24,8 @@ class CharactersFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = CharactersFragment()
+        fun newInstance() =
+            CharactersFragment()
     }
 
     @Inject lateinit var viewModel: MainViewModel
@@ -44,11 +48,12 @@ class CharactersFragment : Fragment() {
         val list = view.findViewById<RecyclerView>(R.id.character_list)
         list.layoutManager = LinearLayoutManager(context)
         viewModel.characters.observe(viewLifecycleOwner) { characters ->
-            list.adapter = CharacterListAdapter(
-                characters.toTypedArray(),
-                onCharacterClicked,
-                imageLoadedCallback
-            )
+            list.adapter =
+                CharacterListAdapter(
+                    characters.toTypedArray(),
+                    onCharacterClicked,
+                    imageLoadedCallback
+                )
         }
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             val visibility = if (loading) View.VISIBLE else View.GONE

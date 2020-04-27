@@ -1,4 +1,4 @@
-package com.example.portalgun.ui.main
+package com.example.portalgun.ui.main.detail
 
 import android.content.Context
 import android.os.Bundle
@@ -13,6 +13,8 @@ import androidx.transition.TransitionInflater
 import com.example.portalgun.R
 import com.example.portalgun.remote.rickandmorty.Character
 import com.example.portalgun.remote.rickandmorty.episodeIds
+import com.example.portalgun.ui.main.ImageLoadedCallback
+import com.example.portalgun.ui.main.MainActivity
 import com.example.portalgun.util.load
 import timber.log.Timber
 import javax.inject.Inject

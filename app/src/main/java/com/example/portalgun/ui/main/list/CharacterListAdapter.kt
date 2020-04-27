@@ -1,4 +1,4 @@
-package com.example.portalgun.ui.main
+package com.example.portalgun.ui.main.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.portalgun.R
 import com.example.portalgun.remote.rickandmorty.Character
+import com.example.portalgun.ui.main.CharacterClickListener
+import com.example.portalgun.ui.main.ImageLoadedCallback
 import com.example.portalgun.util.load
 
 class CharacterListAdapter(
@@ -21,7 +23,9 @@ class CharacterListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val characterView = LayoutInflater.from(parent.context)
             .inflate(R.layout.character_list_item, parent, false)
-        return CharacterViewHolder(characterView)
+        return CharacterViewHolder(
+            characterView
+        )
     }
 
     override fun getItemCount() = characters.size

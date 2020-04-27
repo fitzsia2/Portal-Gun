@@ -1,4 +1,4 @@
-package com.example.portalgun.ui.main
+package com.example.portalgun.ui.main.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

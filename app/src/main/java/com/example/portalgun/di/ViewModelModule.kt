@@ -3,8 +3,8 @@ package com.example.portalgun.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.portalgun.AppViewModelFactory
-import com.example.portalgun.ui.main.CharacterDetailViewModel
-import com.example.portalgun.ui.main.MainViewModel
+import com.example.portalgun.ui.main.detail.CharacterDetailViewModel
+import com.example.portalgun.ui.main.list.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

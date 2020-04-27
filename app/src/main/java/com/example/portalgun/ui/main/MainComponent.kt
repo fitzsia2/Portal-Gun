@@ -1,5 +1,7 @@
 package com.example.portalgun.ui.main
 
+import com.example.portalgun.ui.main.detail.CharacterDetailFragment
+import com.example.portalgun.ui.main.list.CharactersFragment
 import dagger.Subcomponent
 
 @Subcomponent

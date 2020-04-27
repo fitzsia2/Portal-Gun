@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.example.portalgun.PortalGunApp
 import com.example.portalgun.R
+import com.example.portalgun.ui.main.detail.CharacterDetailFragment
+import com.example.portalgun.ui.main.list.CharactersFragment
 
 class MainActivity : AppCompatActivity(), CharactersFragment.ICharacterClick {
 
