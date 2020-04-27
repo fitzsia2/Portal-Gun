@@ -51,8 +51,8 @@ class CharactersFragment : Fragment() {
             )
         }
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
-            view.findViewById<View>(R.id.progress).visibility =
-                if (loading) View.VISIBLE else View.GONE
+            val visibility = if (loading) View.VISIBLE else View.GONE
+            view.findViewById<View>(R.id.progress).visibility = visibility
         }
     }
 

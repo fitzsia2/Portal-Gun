@@ -13,4 +13,5 @@ interface MainComponent {
 
     fun inject(activity: MainActivity)
     fun inject(fragment: CharactersFragment)
+    fun inject(fragment: CharacterDetailFragment)
 }
