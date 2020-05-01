@@ -41,6 +41,7 @@ class CharacterDetailFragment : Fragment() {
 
     @Inject lateinit var viewModel: CharacterDetailViewModel
     private var character: Character? = null
+    private val episodeListAdapter = EpisodeListAdapter()
     private val imageLoadedCallback: ImageLoadedCallback = { loaded, image, exception ->
         if (!loaded) {
             Timber.e(exception)
@@ -79,6 +80,8 @@ class CharacterDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val list: RecyclerView = view.findViewById(R.id.episodes)
         list.layoutManager = LinearLayoutManager(context)
+        list.adapter = episodeListAdapter
+
         view.findViewById<ImageView>(R.id.image).apply {
             load(character?.image, imageLoadedCallback)
         }
@@ -87,10 +90,11 @@ class CharacterDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.location).text = character?.location?.name
         view.findViewById<TextView>(R.id.status).text = character?.status
         view.findViewById<TextView>(R.id.origin).text = character?.origin?.name
+
         viewModel.episodes.observe(viewLifecycleOwner) { episodes ->
             list.visibility = View.VISIBLE
             view.findViewById<View>(R.id.episodes_title).visibility = View.VISIBLE
-            list.adapter = EpisodeListAdapter(episodes.toTypedArray())
+            episodeListAdapter.submitList(episodes)
         }
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             val visibility = if (loading) View.VISIBLE else View.GONE

@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.portalgun.R
 import com.example.portalgun.remote.rickandmorty.Episode
 
-class EpisodeListAdapter(
-    private val episodes: Array<Episode>
-) : RecyclerView.Adapter<EpisodeListAdapter.EpisodeViewHolder>() {
+class EpisodeListAdapter : ListAdapter<Episode, EpisodeListAdapter.EpisodeViewHolder>(
+    Episode.Companion.DiffCallback
+) {
 
     class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -20,13 +21,12 @@ class EpisodeListAdapter(
         return EpisodeViewHolder(episodeView)
     }
 
-    override fun getItemCount() = episodes.size
-
     override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
-        val episode = episodes[position]
-        with(holder.itemView) {
-            findViewById<TextView>(R.id.name).text = episode.name
-            findViewById<TextView>(R.id.episode_code).text = episode.episode
+        getItem(position).let { episode ->
+            with(holder.itemView) {
+                findViewById<TextView>(R.id.name).text = episode.name
+                findViewById<TextView>(R.id.episode_code).text = episode.episode
+            }
         }
     }
 }

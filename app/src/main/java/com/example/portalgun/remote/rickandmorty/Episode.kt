@@ -1,6 +1,7 @@
 package com.example.portalgun.remote.rickandmorty
 
 import android.os.Parcelable
+import androidx.recyclerview.widget.DiffUtil
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
@@ -15,4 +16,17 @@ data class Episode(
     @field:Json(name = "characters") val characterUrls: List<CharacterUrl>,
     val url: String,
     val created: String
-) : Parcelable
+) : Parcelable {
+
+    companion object {
+        object DiffCallback : DiffUtil.ItemCallback<Episode>() {
+            override fun areItemsTheSame(oldItem: Episode, newItem: Episode): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Episode, newItem: Episode): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+}
