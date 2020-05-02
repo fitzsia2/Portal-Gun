@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class CharactersFragment : Fragment() {
 
-    interface ICharacterClick {
+    interface OnCharacterClickedListener {
 
         val onCharacterClicked: CharacterClickListener
     }
@@ -61,7 +61,10 @@ class CharactersFragment : Fragment() {
     }
 
     private val onCharacterClicked: CharacterClickListener = { character, view ->
-        (requireActivity() as? ICharacterClick)?.onCharacterClicked?.invoke(character, view)
+        (requireActivity() as? OnCharacterClickedListener)?.onCharacterClicked?.invoke(
+            character,
+            view
+        )
     }
 
     private val imageLoadedCallback: ImageLoadedCallback = { loaded, image, exception ->

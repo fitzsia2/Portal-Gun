@@ -1,4 +1,4 @@
-package com.example.portalgun.ui.main.detail
+package com.example.portalgun.ui.main.detail.episodes
 
 import android.view.LayoutInflater
 import android.view.View

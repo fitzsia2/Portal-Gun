@@ -8,24 +8,23 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.example.portalgun.R
 import com.example.portalgun.remote.rickandmorty.Character
-import com.example.portalgun.remote.rickandmorty.episodeIds
 import com.example.portalgun.ui.main.ImageLoadedCallback
 import com.example.portalgun.ui.main.MainActivity
 import com.example.portalgun.util.load
-import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
-import javax.inject.Inject
 
 /**
  * Show the details of a particular character.
  */
 class CharacterDetailFragment : Fragment() {
+
+    interface OnEpisodesClickListener {
+
+        val onEpisodesClicked: EpisodesClickListener
+    }
 
     companion object {
 
@@ -39,9 +38,7 @@ class CharacterDetailFragment : Fragment() {
             }
     }
 
-    @Inject lateinit var viewModel: CharacterDetailViewModel
     private var character: Character? = null
-    private val episodeListAdapter = EpisodeListAdapter()
     private val imageLoadedCallback: ImageLoadedCallback = { loaded, image, exception ->
         if (!loaded) {
             Timber.e(exception)
@@ -56,11 +53,6 @@ class CharacterDetailFragment : Fragment() {
         }
         sharedElementEnterTransition = TransitionInflater.from(context)
             .inflateTransition(android.R.transition.move)
-        if (savedInstanceState == null) {
-            character?.episodeIds?.let { list ->
-                viewModel.loadEpisodes(list)
-            }
-        }
     }
 
     override fun onCreateView(
@@ -78,10 +70,6 @@ class CharacterDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val list: RecyclerView = view.findViewById(R.id.episodes)
-        list.layoutManager = LinearLayoutManager(context)
-        list.adapter = episodeListAdapter
-
         view.findViewById<ImageView>(R.id.image).apply {
             load(character?.image, imageLoadedCallback)
         }
@@ -90,20 +78,8 @@ class CharacterDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.location).text = character?.location?.name
         view.findViewById<TextView>(R.id.status).text = character?.status
         view.findViewById<TextView>(R.id.origin).text = character?.origin?.name
-
-        viewModel.episodes.observe(viewLifecycleOwner) { episodes ->
-            list.visibility = View.VISIBLE
-            view.findViewById<View>(R.id.episodes_title).visibility = View.VISIBLE
-            episodeListAdapter.submitList(episodes)
-        }
-        viewModel.loading.observe(viewLifecycleOwner) { loading ->
-            val visibility = if (loading) View.VISIBLE else View.GONE
-            view.findViewById<View>(R.id.progress).visibility = visibility
-        }
-        viewModel.error.observe(viewLifecycleOwner) { error ->
-            error.message?.let { message ->
-                Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
-            }
+        view.findViewById<View>(R.id.episodes_title).setOnClickListener {
+            (requireActivity() as OnEpisodesClickListener).onEpisodesClicked(character!!, view)
         }
     }
 }

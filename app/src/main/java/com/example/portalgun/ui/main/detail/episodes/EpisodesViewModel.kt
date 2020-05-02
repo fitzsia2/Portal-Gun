@@ -1,4 +1,4 @@
-package com.example.portalgun.ui.main.detail
+package com.example.portalgun.ui.main.detail.episodes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.example.portalgun.repo.IRickAndMortyRepository
 import com.example.portalgun.util.launchWithStatus
 import javax.inject.Inject
 
-class CharacterDetailViewModel @Inject constructor(
+class EpisodesViewModel @Inject constructor(
     private val rickAndMortyRepository: IRickAndMortyRepository
 ) : ViewModel() {
 
