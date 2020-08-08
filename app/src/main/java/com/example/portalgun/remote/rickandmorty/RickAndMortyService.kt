@@ -8,6 +8,7 @@ interface RickAndMortyService {
 
     @GET("character")
     suspend fun characters(
+        @Query("page") page: Int? = null,
         @Query("name") name: String? = null,
         @Query("status") status: String? = null,
         @Query("species") species: String? = null,
