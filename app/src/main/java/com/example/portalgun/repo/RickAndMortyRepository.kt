@@ -27,7 +27,9 @@ class RickAndMortyRepository @Inject constructor(
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
-                enablePlaceholders = false
+                enablePlaceholders = false,
+                maxSize = 60,
+                prefetchDistance = 1
             ),
             pagingSourceFactory = { RickAndMortyCharacterPagingSource(rickAndMortyService) }
         ).flow

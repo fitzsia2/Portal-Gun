@@ -37,13 +37,9 @@ class CharactersFragment : Fragment() {
 
     @Inject lateinit var viewModel: CharactersViewModel
     private lateinit var layout: View
-    private val characterLoadStateAdapter by lazy {
-        GenericLoadStateAdapter(::retry)
-    }
     private val pagedCharacterDataAdapter by lazy {
         PagedCharacterDataAdapter(onCharacterClicked, imageLoadedCallback).apply {
             addLoadStateListener(::handleCharacterLoadState)
-
         }
     }
 
@@ -110,7 +106,11 @@ class CharactersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val list = view.findViewById<RecyclerView>(R.id.character_list)
-        list.adapter = pagedCharacterDataAdapter.withLoadStateFooter(characterLoadStateAdapter)
+        list.adapter = pagedCharacterDataAdapter
+            .withLoadStateHeaderAndFooter(
+                GenericLoadStateAdapter(::retry),
+                GenericLoadStateAdapter(::retry)
+            )
         startCollectingCharacterStream()
     }
 
