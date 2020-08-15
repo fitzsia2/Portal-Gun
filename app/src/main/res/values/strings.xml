@@ -7,4 +7,5 @@
     <string name="character_photo_content_description">Character photo</string>
     <string name="episodes">Episodes</string>
     <string name="content_desc_character_image">character image</string>
+    <string name="retry_button_text">Retry</string>
 </resources>
